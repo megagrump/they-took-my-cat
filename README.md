@@ -1,5 +1,7 @@
 # They took my cat
 
+<img width="1279" height="801" alt="scrshot13" src="https://github.com/user-attachments/assets/71b428fb-9e6d-4d8a-ab42-e8c7d348e687" />
+
 An [entry to the JS13K 2025](https://js13kgames.com/2025/games/they-took-my-cat) competition, inspired by the classic arcade game [Elevator Action](https://en.wikipedia.org/wiki/Elevator_Action).
 
 An evil society of animal snatchers stole your cat! Search their headquarters for Manny the cat and fight animal thieves along the way.
