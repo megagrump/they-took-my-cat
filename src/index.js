@@ -34,5 +34,5 @@ requestAnimationFrame(async time => {
 	}
 
 	p_l.innerHTML = '<b style="cursor:pointer;"><u>START GAME</u></b>'
-	p_l.onclick = () => game.start(), requestAnimationFrame(frame)
+	p_l.onclick = () => { game.start(); requestAnimationFrame(frame) }
 })
