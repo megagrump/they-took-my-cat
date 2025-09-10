@@ -1,6 +1,6 @@
 # They took my cat
 
-<img width="1279" height="801" alt="scrshot13" src="https://github.com/user-attachments/assets/71b428fb-9e6d-4d8a-ab42-e8c7d348e687" />
+![screenshot](screenshot.png)
 
 An [entry to the JS13K 2025](https://js13kgames.com/2025/games/they-took-my-cat) competition, inspired by the classic arcade game [Elevator Action](https://en.wikipedia.org/wiki/Elevator_Action).
 
@@ -22,6 +22,10 @@ Space/X to shoot<br>
 
 # Technical
 
-The game generates ~730 images, several sound effects, and ~4 minutes of music at load time.
+The game generates ~730 images and animations, several sound effects, and ~4 minutes of music at load time.
 
 Rendering is done with WebGL2. A simple deferred shading approach is used to render the world, which contains ~160 dynamic light sources.
+
+## Not for redistribution
+
+The source code is provided for educational purposes only.
