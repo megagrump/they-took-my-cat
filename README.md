@@ -1,6 +1,6 @@
 # They took my cat
 
-![screenshot](screenshot.png)
+![screenshot](scrshot.png)
 
 An [entry to the JS13K 2025](https://js13kgames.com/2025/games/they-took-my-cat) competition, inspired by the classic arcade game [Elevator Action](https://en.wikipedia.org/wiki/Elevator_Action).
 
