@@ -1,10 +1,10 @@
 # They took my cat
 
-![screenshot](scrshot.png)
-
 An [entry to the JS13K 2025](https://js13kgames.com/2025/games/they-took-my-cat) competition, inspired by the classic arcade game [Elevator Action](https://en.wikipedia.org/wiki/Elevator_Action).
 
 An evil society of animal snatchers stole your cat! Search their headquarters for Manny the cat and fight animal thieves along the way.
+
+![screenshot](scrshot.png)
 
 A complete playthrough takes ~15-20 minutes.
 
@@ -20,11 +20,11 @@ Down to crouch<br>
 Up/down to use doors and stairs, and control elevators<br>
 Space/X to shoot<br>
 
-# Technical
+## Technical
 
 The game generates ~730 images and animations, several sound effects, and ~4 minutes of music at load time.
 
-Rendering is done with WebGL2. A simple deferred shading approach is used to render the world, which contains ~160 dynamic light sources.
+Rendering is done with WebGL2. A simplified deferred shading approach is used to render the world, which contains ~160 dynamic light sources. Materials only have one property besides the texture: a specular exponent value, stored in the blue channel of the generated normal maps.
 
 ## Not for redistribution
 
