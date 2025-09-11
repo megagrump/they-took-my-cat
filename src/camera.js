@@ -21,19 +21,23 @@ const calcTarget = (px, py) => [
 let [ x, y ] = calcTarget(0, wh)
 let right = x + resX, bottom = y + resY
 let targetX = x, targetY = y
+let shakeVal = 0
 
 export const getX = () => Math.round(x)
 
 export const getY = () => Math.round(y)
 
+export const shake = () => shakeVal = 1
+
 export const tick = dt => {
 	[ targetX, targetY ] = calcTarget(player.x, player.y)
 	const move = 1.8 ** Math.log((targetX - x)**2 + (targetY - y)**2 + 1)
 
-	x = interp(x, targetX, move * dt)
-	y = interp(y, targetY, move * dt)
+	x = interp(x, targetX, move * dt) + shakeVal * (1 - 2 * Math.random()) * 4
+	y = interp(y, targetY, move * dt) + shakeVal * (1 - 2 * Math.random()) * 4
 	right = x + resX
 	bottom = y + resY
+	shakeVal = Math.max(0, shakeVal - dt)
 }
 
 export const isVisible = sprite => !(y > sprite.b || bottom < sprite.t || x > sprite.r || right < sprite.l)

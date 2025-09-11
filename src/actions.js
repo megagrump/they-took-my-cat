@@ -5,6 +5,7 @@ import { dist1 } from './helper.js'
 import { isVisible } from './camera.js'
 import { ANIM_DIE } from './Dude.js'
 import { sounds, SOUND_DIE, SOUND_SCREAM } from './audio/audio.js'
+import { shake } from './camera.js'
 
 export const moveAction = (dude, x, y = dude.y, speed = 1) => {
 	let clampX, clampY
@@ -49,7 +50,10 @@ export const fallAction = (dude, floor, gravity) => {
 		if(time == 0) sounds[SOUND_SCREAM]()
 		time += dt
 		dude.y = Math.min(floor, dude.y + dt * gravity)
-		return dude.y >= floor
+		if(dude.y >= floor) {
+			shake()
+			return true
+		}
 	}
 }
 
