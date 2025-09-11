@@ -87,7 +87,7 @@ void main(){
 // FRAGMENT_AMBIENT
 `${colorFragPreamble}
 void main(){
- col=vec4(.1*texture(tex0,uv).xyz,1.);
+ col=vec4(vec3(.07,.08,.09)*texture(tex0,uv).xyz,1.);
 }`,
 
 // VERTEX_LIGHT
