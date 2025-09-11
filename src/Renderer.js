@@ -182,12 +182,12 @@ const renderAO = () => {
 	shaderBlur[0]()
 	for(let i = 1; i < 3; ++i) {
 		bufferAOBlur[1]()
-		gl.uniform3f(shaderBlur[2], 0, 1.5 / resY, .1)
+		gl.uniform3f(shaderBlur[2], 0, 1.5 / resY, .11)
 		bindTex(bufferAO[0][0])
 		geomScreen.draw()
 
 		bufferAO[1]()
-		gl.uniform3f(shaderBlur[2], 1.5 / resX, 0, .1)
+		gl.uniform3f(shaderBlur[2], 1.5 / resX, 0, .11)
 		bindTex(bufferAOBlur[0][0])
 		geomScreen.draw()
 	}
