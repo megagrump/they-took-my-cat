@@ -57,6 +57,12 @@ export class Mob extends Dude {
 		}
 
 		else {
+			if(!this._crouching && dist1(this.t % 256, 64) < 16 && Math.random() < .5) {
+				// randomly shoot at ceiling lights
+				this._shoot()
+				alertMobs(this)
+			}
+
 			if(
 				!world.player._door
 				&& !world.player._actionList[0]
@@ -145,7 +151,7 @@ export const tick = dt => {
 	tickTime = 0
 
 	activeMobs.forEach(mob => {
-		if(!mob.dead && dist1(mob.y, world.player.y) > 768) {
+		if(!mob.dead && dist1(mob.y, world.player.y) > 512 && !isVisible(mob)) {
 			mob.dead = true
 			world.removeSprite(mob)
 		}
