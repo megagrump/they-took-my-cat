@@ -143,8 +143,8 @@ const picture = p => {
 
 export const genTiles = async () => {
 	const textures = [
-		stone('#fff', '#fff', '#fffc', 0, 0, .5, .13, 64, 64, 0,  0, ['',''], 30,  1), // back wall
-		stone('#d86', '#aaa', '#aaab', 2, 2, .5,  .2, 30, 13, 3, 16, ['',''], 10, .5), // walls
+		stone('#fff', '#fff', '#fffc', 0, 0, .5, .13, 64, 64, 0,  0, ['',''], 30, 1), // back wall
+		stone('#d86', '#ccc', '#aaab', 2, 4, .5,  .2, 30, 13, 3, 16, ['',''], 60, 1), // walls
 		stairs(),
 		stairsTop(),
 		stairsBottom(),
