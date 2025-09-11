@@ -140,6 +140,19 @@ export const castRay = (x1, y1, dx, dy, mask, ignore) => {
 	return noHit
 }
 
+let spritesDirty = true
+let removedSprites = []
+export const tick = dt => {
+	if(spritesDirty) {
+		removedSprites.forEach(s => sprites.splice(sprites.indexOf(s), 1))
+		removedSprites.length = 0
+		sprites.sort((a, b) => a.z - b.z)
+		spritesDirty = false
+	}
+	sprites.forEach(s => s.tick(dt))
+	tickFlash(dt)
+}
+
 export const addSprite = sprite => {
 	sprites.push(sprite)
 	spritesDirty = true
@@ -148,7 +161,7 @@ export const addSprite = sprite => {
 
 export const removeSprite = sprite => {
 	spritesDirty = true
-	sprites.splice(sprites.indexOf(sprite), 1)
+	removedSprites.push(sprite)
 }
 
 export const getDoorAt = (x, y) => {
@@ -170,15 +183,6 @@ export const respawn = newCat => {
 	}
 }
 
-let spritesDirty = true
-export const tick = dt => {
-	if(spritesDirty) {
-		sprites.sort((a, b) => a.z - b.z)
-		spritesDirty = false
-	}
-	sprites.forEach(s => s.tick(dt))
-	tickFlash(dt)
-}
 
 export const init = (tiles, playerSprite, mobSprites, doorSprites, elevatorSprite, bulletSprite, signSprite) => {
 	doorSprites = createSpriteBuffer([
