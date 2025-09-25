@@ -6,21 +6,25 @@ An evil society of animal snatchers stole your cat! Search their headquarters fo
 
 ![screenshot](scrshot.png)
 
-A complete playthrough takes ~15-20 minutes.
+## Post-competition version
 
-Desktop browsers only. Tested to work in Firefox, Chromium, and WebKitGTK. Performs best in Firefox.
+The game was updated after the competition. Some bugs were fixed, and the control scheme was improved after player feedback during the competition. This version doesn't necessarily fit in a 13 KiB file anymore.
 
-Safari and other browsers are untested.
+The update version can be played directly in your desktop browser [here](https://megagrump.github.io/they-took-my-cat/).
+
+Or you can play the [original compo version here](https://js13kgames.com/2025/games/they-took-my-cat).
 
 ## Controls
 
 Move around using arrow keys/WASD:<br>
 Left/right to walk/turn<br>
-Down to crouch<br>
 Up/down to use doors and stairs, and control elevators<br>
+C/LeftCtrl to crouch<br>
 Space/X to shoot<br>
 
 ## Technical
+
+Made for desktop browsers. Tested to work in Firefox, Chromium, and WebKitGTK. Performs best in Firefox. Safari and other browsers are untested.
 
 The game generates ~730 images and animations, several sound effects, and ~4 minutes of music at load time.
 

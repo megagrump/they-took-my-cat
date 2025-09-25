@@ -26,6 +26,12 @@ export class Player extends Dude {
 
 	constructor(buf, x, y) {
 		super(buf, x, y, world.PLAYER_Z, 3 * 64)
+
+		this._keyMap = {
+			[input.KEY_DOWN]: () => this._downPressed(),
+			[input.KEY_UP]: () => this._upPressed(),
+			[input.KEY_FIRE]: () => this._firePressed(),
+		}
 	}
 
 	tick(dt) {
@@ -36,7 +42,7 @@ export class Player extends Dude {
 				input.keys[input.KEY_UP] && (this._elevator.d = -1)
 			}
 
-			this._crouching = input.keys[input.KEY_DOWN]
+			this._crouching = input.keys[input.KEY_CROUCH]
 			this._walk(-input.keys[input.KEY_LEFT] + input.keys[input.KEY_RIGHT], dt)
 		}
 	}
@@ -44,45 +50,53 @@ export class Player extends Dude {
 	keyPressed(key) {
 		if(this._actionList[0])
 			return;
+		const b = this._keyMap[key] ?? (() => 0)
+		b()
+	}
 
-		if(key == input.KEY_FIRE && game.time - lastFireTime >= FIREDELAY) {
-			this._shoot()
-			alertMobs()
-			lastFireTime = game.time
-		}
+	_downPressed() {
+		if(this._door)
+			return this._leaveRoom()
 
-		if(key == input.KEY_DOWN) {
-			if(this._door)
-				return this._leaveRoom()
+		if(this._crouching)
+			return;
 
-			const stairs = this._isAtStairs(1)
-			if(stairs)
-				return this._useStairs(stairs)
-		}
+		const stairs = this._isAtStairs(1)
+		if(stairs)
+			return this._useStairs(stairs)
+	}
 
-		if(key == input.KEY_UP) {
-			if(this._door)
-				return this._leaveRoom()
+	_upPressed() {
+		if(this._door)
+			return this._leaveRoom()
 
-			this._crouching = false
+		this._crouching = false
 
-			const door = world.getDoorAt(this.x, this.y)
-			if(door) {
-				if(door.color == 'X' && game.inventory.indexOf('C') == -1) {
-					return showText(`You can't leave without Manny`)
-				}
-
-				if(game.inventory.indexOf(door.color) == -1) {
-					return showText(`You need a ${door.name} key`)
-				}
-
-				return this._useDoor(door)
+		const door = world.getDoorAt(this.x, this.y)
+		if(door) {
+			if(door.color == 'X' && game.inventory.indexOf('C') == -1) {
+				return showText(`You can't leave without Manny`)
 			}
 
-			const stairs = this._isAtStairs(-1)
-			if(stairs)
-				return this._useStairs(stairs)
+			if(game.inventory.indexOf(door.color) == -1) {
+				return showText(`You need a ${door.name} key`)
+			}
+
+			return this._useDoor(door)
 		}
+
+		const stairs = this._isAtStairs(-1)
+		if(stairs)
+			return this._useStairs(stairs)
+	}
+
+	_firePressed() {
+		if(this._door || game.time - lastFireTime < FIREDELAY)
+			return;
+
+		this._shoot()
+		alertMobs()
+		lastFireTime = game.time
 	}
 
 	_useDoor(door) {
@@ -113,17 +127,13 @@ export class Player extends Dude {
 	_useStairs(stairs) {
 		const [ dir, x, y ] = stairs
 		const tx = x + dir[0] * 256, ty = y + dir[1] * 256
-		const actions = [
-			moveAction(this, x, y),
-			moveAction(this, tx, ty, .7),
-		]
-		if(dir[1] == -1)
-			actions.push(moveAction(this, tx + dir[0] * 33, ty))
-		actions.push(animAction(this, ANIM_IDLE))
-
 		this._flip(dir[0], 0)
 		this.setAnim(ANIM_WALK)
-		this._scheduleActions(...actions)
+		this._scheduleActions(
+			moveAction(this, x, y),
+			moveAction(this, tx, ty, .7),
+			animAction(this, ANIM_IDLE)
+		)
 	}
 
 	_leaveRoom() {

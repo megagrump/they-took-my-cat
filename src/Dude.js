@@ -234,25 +234,24 @@ const a_walk = [
 		1,
 	],
 	, // JOINT_TORSO
-	[
-		[ 25, -20, 25 ],
+	[  // JOINT_LARM
+		[ -20, 25, -20 ],
 		1,
 	],
-
-	[ // JOINT_LARM
-		[ -10, -50, -10 ],
+	[  // JOINT_LOWERLARM
+		[ -50, -10, -50 ],
 		1,
 	],
-	,
-	, // JOINT_LOWERLARM
-	[
+	, // JOINT_RARM
+	, // JOINT_LOWERRARM
+	[ // JOINT_LLEG
 		[ 18, -30, 18 ],
 		1,
 	],
-	[ // JOINT_RARM
+	[  // JOINT_LOWERLEG
 		[ 10, 60, 30, 5, 20, 0, 10 ],
 	],
-	[ // JOINT_LOWERRARM
+	[  // JOINT_LFOOT
 		[ -10, 0, 15, -5, -5, -10 ],
 	],
 ]
@@ -271,29 +270,29 @@ const a_walk_gun = [
 		1,
 	],
 	, // JOINT_TORSO
-	[
-		[ 25, -20, 25 ],
+	[  // JOINT_LARM
+		[ -20, 25, -20 ],
 		1,
 	],
-	[ // JOINT_LARM
-		[ -10, -50, -10 ],
-		1,
-	],
-	[ // JOINT_LOWERLARM
-		[ -65, -55, -65 ],
+	[  // JOINT_LOWERLARM
+		[ -50, -10, -50 ],
 		1,
 	],
 	[ // JOINT_RARM
-		[ -40, -35, -40 ],
+		[ -65, -55, -65 ],
+		1,
 	],
 	[ // JOINT_LOWERRARM
+		[ -40, -35, -40 ],
+	],
+	[ // JOINT_LLEG
 		[ 18, -30, 18 ],
 		1,
 	],
-	[ // JOINT_LLEG
+	[ // JOINT_LOWERLLEG
 		[ 10, 60, 30, 5, 20, 0, 10 ],
 	],
-	[ // JOINT_LOWERLLEG
+	[ // JOINT_LFOOT
 		[ -10, 0, 15, -5, -5, -10 ],
 	],
 ]
@@ -326,10 +325,10 @@ const a_die = [
 		[ 0, 180 ],
 	],
 	, // JOINT_LFOOT
-	[
+	[  // JOINT_RLEG
 		[ 0, -90 ],
 	],
-	[ // JOINT_RLEG
+	[ // JOINT_LOWERRLEG
 		[ 0, 180 ],
 	],
 ]
@@ -359,7 +358,7 @@ ANIMATIONS.forEach(([anim], animId) => {
 	// mirrored limbs with shifted animation phase
 	if(animId <= ANIM_WALK_GUN) {
 		[,,,,,3,4,,,,7,8,9].forEach((srcIndex, targetIndex) => {
-			const shifted = anim[targetIndex] ?? { ...anim[srcIndex] }
+			const shifted = anim[targetIndex] ?? [ ...anim[srcIndex] ]
 			shifted[ANIMATION_PHASE] += .5
 			anim[targetIndex] = shifted
 		})
