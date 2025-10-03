@@ -38,6 +38,7 @@ export const gradient = (colorA, colorB, a = 90) =>
 export const depthFilter = [1, .5, .4].reduce((a, d, i) => a +
 `<filter id="d${i}">
 <feColorMatrix in="SourceAlpha" result="blur" type="matrix" values="-1 0 0 0 ${d} 0 -1 0 0 ${d} 0 0 -1 0 ${d} 0 0 0 1 0" />
+<feMorphology in="blur" result="blur" operator="erode" radius="4" />
 <feGaussianBlur in="blur" result="blur" stdDeviation="15" />
 <feComposite operator="atop" in="blur" in2="SourceAlpha" />
 </filter>`, ''
