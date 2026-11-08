@@ -28,6 +28,12 @@ const handler = stateValue => ev => {
 document.onkeydown = handler(1)
 document.onkeyup = handler(0)
 
+document.onblur = () => {
+	for(let k = KEY_DOWN; k <= KEY_CROUCH; ++k) {
+		keys[k] = 0
+	}
+}
+
 export const handleInput = player => {
 	for(let k = KEY_DOWN; k <= KEY_CROUCH; ++k) {
 		keys[k] != oldKeys[k] && !oldKeys[k] &&	!player.dead && player.keyPressed(k)
