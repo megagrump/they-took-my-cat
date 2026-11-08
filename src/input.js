@@ -28,7 +28,7 @@ const handler = stateValue => ev => {
 document.onkeydown = handler(1)
 document.onkeyup = handler(0)
 
-document.onblur = () => {
+window.onblur = () => {
 	for(let k = KEY_DOWN; k <= KEY_CROUCH; ++k) {
 		keys[k] = 0
 	}
