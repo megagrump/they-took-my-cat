@@ -177,7 +177,7 @@ export const getBullet = () => bullets[currentBullet++ % bullets.length]
 export const respawn = newCat => {
 	player = addSprite(new Player(player.buf, ...playerSpawn))
 	if(newCat) {
-		const door = randomItem(doors.filter(d => d.color == 'G'))
+		const door = randomItem(doors.filter(d => d.color == 'G' && !d.key && !d.life))
 		door.close()
 		door.cat = true
 	}
