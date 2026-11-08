@@ -131,7 +131,6 @@ const createShader = (vert, frag, uniforms) => {
 const BLURSCALE = .5
 const bufferBG =        createFramebuffer([ createTexture2D(resX, resY), createTexture2D(resX, resY) ])
 const bufferFG =        createFramebuffer([ createTexture2D(resX, resY), bufferBG[0][1] ])
-const bufferFGDiffuse = createFramebuffer([ bufferFG[0][0] ])
 const bufferAOBlur =    createFramebuffer([ createTexture2D(resX * BLURSCALE, resY * BLURSCALE, R8) ])
 const bufferAO =        createFramebuffer([ createTexture2D(resX * BLURSCALE, resY * BLURSCALE, R8) ])
 const bufferDiffuse =   createFramebuffer([ createTexture2D(resX, resY) ])
@@ -245,7 +244,6 @@ export const render = () => {
 	bindTex(tileTextures[1], 1, TEXTURE_2D_ARRAY)
 	geomFG.draw()
 
-	bufferFGDiffuse[1]()
 	renderAO()
 
 	// diffuse + ao
