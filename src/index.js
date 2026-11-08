@@ -28,7 +28,7 @@ requestAnimationFrame(async time => {
 	]))
 
 	const frame = t => {
-		document.hasFocus() && game.tick(Math.min(1/30, (t - time) * .001))
+		game.tick(Math.min(1/30, (t - time) * .001))
 		time = t
 		requestAnimationFrame(frame)
 	}
