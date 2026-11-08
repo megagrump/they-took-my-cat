@@ -41,4 +41,8 @@ export const removeFromHud = e => {
 	addToHud()
 }
 
-export const gl = p_c.getContext('webgl2') || alert("No WebGL2!")
+export const gl = p_c.getContext('webgl2', {
+	antialias: false,
+	depth: false,
+	alpha: false,
+}) || alert("No WebGL2!")

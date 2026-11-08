@@ -50,11 +50,12 @@ gl.enable(BLEND)
 const createFramebuffer = textures => {
 	const attachments = textures.map((t, i) => COLOR_ATTACHMENT0 + i)
 	const buffer = gl.createFramebuffer()
+	gl.bindFramebuffer(DRAW_FRAMEBUFFER, buffer)
+	for(let i = 0; i < textures.length; ++i)
+		gl.framebufferTexture2D(DRAW_FRAMEBUFFER, COLOR_ATTACHMENT0 + i, TEXTURE_2D, textures[i], 0)
 
 	const bind = () => {
 		gl.bindFramebuffer(DRAW_FRAMEBUFFER, buffer)
-		for(let i = 0; i < textures.length; ++i)
-			gl.framebufferTexture2D(DRAW_FRAMEBUFFER, COLOR_ATTACHMENT0 + i, TEXTURE_2D, textures[i], 0)
 		gl.drawBuffers(attachments)
 	}
 
@@ -159,7 +160,7 @@ export const buildMap = (m, t) => {
 	)
 
 	m.forEach(([ x, y, [ layer, tex, flags ] ]) => {
-		geomBD.add(x, y, 0)
+		geomBD.add(x, y, 0, 0)
 		if(layer--)
 			[geomBG, geomFG][layer].add(x, y, tex, flags & FLAG_FLIP)
 	})
