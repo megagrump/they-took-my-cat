@@ -3,7 +3,7 @@ import * as game from './game.js'
 import * as world from './world.js'
 import { genTiles } from './Tile.js'
 import { genDude } from './Dude.js'
-import { genDoor } from './Door.js'
+import { genDoor, genDoorNormals } from './Door.js'
 import { genElevator } from './Elevator.js'
 import { genBullet } from './Bullet.js'
 import { genSign } from './sign.js'
@@ -21,6 +21,7 @@ requestAnimationFrame(async time => {
 			genDoor('G'),
 			genDoor('X'),
 		]),
+		genDoorNormals(),
 		genElevator(),
 		genBullet(),
 		genSign(),

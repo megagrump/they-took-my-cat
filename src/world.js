@@ -184,7 +184,8 @@ export const respawn = newCat => {
 }
 
 
-export const init = (tiles, playerSprite, mobSprites, doorSprites, elevatorSprite, bulletSprite, signSprite) => {
+export const init = (tiles, playerSprite, mobSprites, doorSprites, doorNormals, elevatorSprite, bulletSprite, signSprite) => {
+	doorSprites.forEach(s => s.push(doorNormals))
 	doorSprites = createSpriteBuffer([
 		doorSprites.reduce((a, d) => (a.push(...d[0]), a), []),
 		doorSprites.reduce((a, d) => (a.push(...d[1]), a), [])
