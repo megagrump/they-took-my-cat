@@ -56,7 +56,7 @@ ${body}
 const load = src => new Promise((resolve, reject) => {
 	const svg = new Image()
 	svg.onload = () => resolve(svg)
-	svg.onerror = (e) => reject(e)
+	svg.onerror = () => reject(new Error('SVG render failed'))
 	svg.src = `data:image/svg+xml;utf8,${encodeURIComponent(src)}`
 })
 
