@@ -53,9 +53,10 @@ export const svg = (w, h, body) =>
 ${body}
 </svg>`
 
-const load = src => new Promise(resolve => {
+const load = src => new Promise((resolve, reject) => {
 	const svg = new Image()
 	svg.onload = () => resolve(svg)
+	svg.onerror = (e) => reject(e)
 	svg.src = `data:image/svg+xml;utf8,${encodeURIComponent(src)}`
 })
 
